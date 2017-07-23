@@ -8,7 +8,7 @@ pipeline {
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
-                sh 'git push heroku master'
+                sh 'sbt test'
             }
         }
     }
