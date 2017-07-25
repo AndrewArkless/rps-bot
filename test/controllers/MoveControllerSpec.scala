@@ -16,12 +16,12 @@ class MoveControllerSpec extends PlaySpec with GuiceOneAppPerTest {
       status(result) mustBe OK
     }
 
-    """return "ROCK" as JSON for a GET""" in {
+    """return "PAPER" as JSON for a GET""" in {
       val request = FakeRequest(GET, "/move").withHeaders("Host" -> "localhost")
       val result = route(app, request).get
 
       contentType(result) mustBe Some("application/json")
-      contentAsString(result) mustBe """"ROCK""""
+      contentAsString(result) mustBe """"PAPER""""
     }
 
     "return 200 for a POST" in {
