@@ -6,7 +6,7 @@ import play.api.mvc.{Action, Controller}
 class MoveController extends Controller {
   def move() = Action {
     println("HEREbv I AM!fdsdsds!!!!")
-    Ok(Json.toJson("ROCK"))
+    Ok(Json.toJson("PAPER"))
   }
 
   def lastOpponentMove() = Action {
