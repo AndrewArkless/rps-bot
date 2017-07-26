@@ -9,7 +9,8 @@ class MoveController extends Controller {
     Ok(Json.toJson("PAPER"))
   }
 
-  def lastOpponentMove() = Action {
-    Ok
+  def lastOpponentMove() = Action { request =>
+    val body=request.body
+    Ok(request.body)
   }
 }
