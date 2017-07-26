@@ -3,4 +3,4 @@ GET     /move                       controllers.MoveController.move
 POST    /move                       controllers.MoveController.lastOpponentMove
 
 POST    /start                      controllers.StartController.start
-
+POST    /hello                      controllers.MoveController.sayHello
