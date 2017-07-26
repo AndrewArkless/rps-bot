@@ -10,7 +10,7 @@ class MoveController extends Controller {
   }
 
   def lastOpponentMove() = Action { request =>
-    val body=request.body
-    Ok(request.body)
+    val body=request.body.asText.getOrElse("Empty") + "ANDREW"
+    Ok(body)
   }
 }
