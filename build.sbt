@@ -11,6 +11,10 @@ libraryDependencies += filters
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "2.0.0" % Test
 
 herokuAppName in Compile := "evening-wildwood-67914"
+
+libraryDependencies ++= Seq(
+  ws
+)
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.example.controllers._"
 
