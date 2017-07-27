@@ -20,7 +20,7 @@ class GetMoveController @Inject() (ws: WSClient) extends Controller {
 
   def getMove()=Action.async {request =>
     implicit val context = play.api.libs.concurrent.Execution.Implicits.defaultContext
-    val url="http://localhost:9001/get-move"
+    val url="http://localhost:9001/move"
     val request: WSRequest = ws.url(url)
     val futureResponse: Future[WSResponse] = request.get()
     futureResponse.map{
