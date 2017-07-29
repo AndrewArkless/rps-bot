@@ -6,3 +6,6 @@ POST    /start                      controllers.StartController.start
 POST    /hello                      controllers.MoveController.sayHello
 
 GET     /get-move                   controllers.GetMoveController.getMove
+GET     /all-moves                  controllers.ReturnMovesController.returnMoves
+GET     /selected-moves             controllers.ReturnMovesController.findMove
+GET     /update-moves               controllers.ReturnMovesController.updateMoves
