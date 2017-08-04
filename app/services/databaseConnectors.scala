@@ -6,6 +6,7 @@ import com.mongodb.casbah.commons.{MongoDBObject, TypeImports}
 import models.Stock
 import com.mongodb.casbah.Imports._
 
+
 object MongoFactory {
   private val SERVER = "localhost"
   private val PORT   = 27017
@@ -26,10 +27,12 @@ object MongoFactory {
   }
 
   def updateMovesQuery: casbah.TypeImports.WriteResult ={
-    val google = Stock("GOOG", 400)
-    val query = MongoDBObject("symbol" -> "GOOG")
-    collection.update(query, buildMongoDbObject(google),false,true)
+    val google = Stock("NFLX", 400)
+    val query = MongoDBObject("symbol" -> "NFLX")
+    val x= collection.update(query, buildMongoDbObject(google),false, true)
+    x
   }
+
 
   def getSelectedMove(query:String): List[Stock] ={
     val q = MongoDBObject("symbol" -> query)
