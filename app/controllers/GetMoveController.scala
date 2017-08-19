@@ -24,6 +24,7 @@ class GetMoveController @Inject() (ws: WSClient) extends Controller {
     val request: WSRequest = ws.url(url)
     val futureResponse: Future[WSResponse] = request.get()
     futureResponse.map{
+
       x=>
       //(x.body \ "name").asOpt[String].map { name =>
         Ok("Hello " + x.body.toString)
