@@ -27,9 +27,10 @@ object MongoFactory {
   }
 
   def updateMovesQuery: casbah.TypeImports.WriteResult ={
-    val google = Stock("NFLX", 400)
+
     val query = MongoDBObject("symbol" -> "NFLX")
-    val x= collection.update(query, buildMongoDbObject(google),false, true)
+    val update = $set("price"->400)
+    val x= collection.update(query, update,false,multi= true)
     x
   }
 
