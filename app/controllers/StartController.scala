@@ -1,9 +1,16 @@
 package controllers
 
-import play.api.mvc.{Action, Controller}
+import javax.inject.Inject
 
-class StartController extends Controller {
-  def start() = Action {
+import play.api.libs.json.JsValue
+import play.api.mvc.{Action, Controller}
+import services.MongoFactory
+
+
+class StartController @Inject()(dc:MongoFactory) extends Controller {
+  def start() = Action { request=>
+    val start: JsValue =request.body.asJson.get
+    dc.updateTable("TEST UPDATe",start)
     Ok
   }
 }

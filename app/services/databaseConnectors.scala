@@ -1,23 +1,26 @@
 package services
 
+import com.google.inject.ImplementedBy
 import com.mongodb.casbah
 import com.mongodb.casbah.MongoConnection
 import com.mongodb.casbah.commons.{MongoDBObject, TypeImports}
 import models.Stock
 import com.mongodb.casbah.Imports._
+import com.mongodb.util.JSON
+import play.api.libs.json.JsValue
 
 
-object MongoFactory {
+class concreteMongoFactory extends MongoFactory {
   private val SERVER = "localhost"
   private val PORT   = 27017
-  private val DATABASE = "portfolio"
-  private val COLLECTION = "stocks"
+  private val DATABASE = "games"
+  private val COLLECTION = "game"
   val connection = MongoConnection(SERVER)
   val collection = connection(DATABASE)(COLLECTION)
 
   def saveStock(stock: Stock): Unit = {
     val mongoObj = buildMongoDbObject(stock)
-    MongoFactory.collection.save(mongoObj)
+    collection.save(mongoObj)
   }
 
   def getMoves: List[Stock] ={
@@ -53,5 +56,21 @@ object MongoFactory {
     val price = obj.getAs[Int]("price").get
     Stock(symbol, price)
   }
-}
 
+  def updateTable(table:String,data:JsValue): Unit ={
+   // val obj: JsValue = Json.obj("age" -> JsNumber(100))
+    val doc: DBObject = JSON.parse(data.toString).asInstanceOf[DBObject]
+  //  val mongoObj = buildMongoDbObject(data)
+   val collection = connection(DATABASE)(table)
+    collection.save(doc)
+  }
+}
+@ImplementedBy(classOf[concreteMongoFactory])
+trait MongoFactory{
+  def updateTable(table:String,data:JsValue):Unit
+  def convertDbObjectToStock(obj: MongoDBObject): Stock
+  def getSelectedMove(query:String): List[Stock]
+  def updateMovesQuery: casbah.TypeImports.WriteResult
+  def getMoves: List[Stock]
+  def saveStock(stock: Stock): Unit
+}
